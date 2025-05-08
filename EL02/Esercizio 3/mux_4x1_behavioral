@@ -1,0 +1,20 @@
+module mux_4x1_behavioral (in_1, sel_i; out_o);
+    input [3:0] in_i; // Input del multiplexer
+    input [1:0] sel_i; // Selettore
+    output out_o; // Output del multiplexer
+
+    reg out_int; // Variabile interna per l'output
+
+    always @(in_i or sel_i) begin
+        out_int <= in_i[0]; 
+
+        if(sel_i == 2'b01)begin
+            out_int <= in_i[1];
+        end else if(sel_i == 2'b10) begin
+            out_int <= in_i[2];
+        end else if(sel_i == 2'b11) begin
+            out_int <= in_i[3];
+        end
+    end
+    assign out_o = out_int; // Assegna il valore finale all'output
+endmodule
