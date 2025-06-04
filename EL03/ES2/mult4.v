@@ -7,6 +7,11 @@ module mod4_checker(in_1, in_2, rst, clk, out_o);
     localparam S1 = 1'b1;
 
     reg state, next_state;
+    
+    initial begin
+        $dumpfile("waveform.vcd");  // nome del file di output
+        $dumpvars(0, dut);          // traccia tutti i segnali del modulo 'dut'
+    end
 
     always @(posedge clk or posedge rst) begin
         if (rst) begin
